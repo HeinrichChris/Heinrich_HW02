@@ -31,6 +31,10 @@ void Square::update(){
 		collide(this,that);
 		that = that->next;
 	}
+
+	if(this->x > 360 || this->x < 0){
+		remove();
+	}
 }
 
 void Square::draw(){
@@ -43,32 +47,41 @@ void collide(Square* square1, Square* square2){
 		if(square1->x >= square2->x){
 			if(square1->y < square2->y+square2->size){
 				if(square1->y >= square2->y){
-					if(square1->red + square2->red >255){
+					int r = square1->red + square2->red;
+					int g = square1->green + square2->green;
+					int b = square1->blue + square2->blue;
+
+					if(r > g && r > b){
 						square1->red = 255;
+						square1->green = 0;
+						square1->blue = 0;
 						square2->red = 255;
+						square2->green = 0;
+						square2->blue = 0;
 					}
-					else{
-						square1->red = square1->red + square2->red;
-						square2->red = square1->red + square2->red;
-					}
-					if(square1->green + square2->green >255){
+					else if(g > b){
+						square1->red = 0;
 						square1->green = 255;
+						square1->blue = 0;
+						square2->red = 0;
 						square2->green = 255;
+						square2->blue = 0;
 					}
 					else{
-						square1->green = square1->green + square2->green;
-						square2->green = square1->green + square2->green;
-					}
-					if(square1->blue + square2->blue >255){
+						square1->red = 0;
+						square1->green = 0;
 						square1->blue = 255;
+						square2->red = 0;
+						square2->green = 0;
 						square2->blue = 255;
-					}
-					else{
-						square1->blue = square1->blue + square2->blue;
-						square2->blue = square1->blue + square2->blue;
 					}
 				}
 			}
 		}
 	}
+}
+
+void Square::remove(){
+	this->prev->next = this->next;
+	this->next->prev = this->prev;
 }

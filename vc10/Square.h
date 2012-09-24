@@ -18,6 +18,7 @@ public:
 
 	void draw();
 	void update();
+	void remove();
 };
 
 void insertAfter(Square* new_square, Square* insert_here);

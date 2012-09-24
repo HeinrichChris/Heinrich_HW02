@@ -13,10 +13,12 @@ public:
 	float red;
 	float green;
 	float blue;
+	int speed;
+	bool falls;
 
 	void draw();
 	void update();
 };
 
 void insertAfter(Square* new_square, Square* insert_here);
-
+void collide(Square* square1, Square* square2);

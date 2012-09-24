@@ -47,6 +47,14 @@ void Heinrich_HW02App::mouseDown( MouseEvent event )
 	int red = (rand()%255);
 	int green = (rand()%255);
 	int blue = (rand()%255);
+	int fall = rand()%2;
+	bool falls;
+	int speed = rand()%(9)+1;
+
+	if(fall == 0)
+		falls = true;
+	else
+		falls = false;
 
 	Square* new_square = new Square();
 	new_square->x = (float)x;
@@ -55,6 +63,8 @@ void Heinrich_HW02App::mouseDown( MouseEvent event )
 	new_square->red = (uint8_t)red;
 	new_square->green = (uint8_t)green;
 	new_square->blue = (uint8_t)blue;
+	new_square->falls = falls;
+	new_square->speed = speed;
 
 	insertAfter(new_square, list->prev);
 }

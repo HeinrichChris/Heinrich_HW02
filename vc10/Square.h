@@ -1,6 +1,5 @@
-
-class Square
-{
+// While it is acceptible for this assignment, you will usually want to create your shape separate from your List Node
+class Square{
 public:
 	Square();
 
@@ -9,10 +8,14 @@ public:
 
 	float x;
 	float y;
+
 	float size;
+
+	// consider making these 3 variables uint8_t since you cast them in draw anyways
 	float red;
 	float green;
 	float blue;
+
 	int speed;
 	bool falls;
 
